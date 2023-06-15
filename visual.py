@@ -1,6 +1,8 @@
 import streamlit as st  # 网页设计库
 import pandas as pd  # 数据分析
 import numpy as np  # 数据计算
+
+import streamlit.components.v1 as components
 from streamlit_echarts import st_pyecharts  # 依靠于pyecharts的一个可呈现在streamlit端的制图库
 import pyecharts.options as opts  # 图表选项库
 from pyecharts.charts import Pie  # 饼图库
