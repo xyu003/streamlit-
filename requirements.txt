@@ -1,0 +1,10 @@
+pandas
+numpy
+wordcloud
+matplotlib
+plotly
+jieba
+scipy
+Pillow
+streamlit-echarts
+pyecharts
