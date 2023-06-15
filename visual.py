@@ -53,7 +53,7 @@ elif page == '期末周那些事儿~':
     option0 = st.selectbox('_词云_',('是否显示关于考试周的词云','是','否'))
     if option0 == '是':
         # 读取文本文件
-        with open('C:/Users/xyu003/PycharmProjects/python课设/weibowenben.txt', 'r', encoding='utf-8') as file:
+        with open('weibowenben.txt', 'r', encoding='utf-8') as file:
             text = file.read()
 
         # 使用jieba进行中文分词
@@ -66,7 +66,7 @@ elif page == '期末周那些事儿~':
         filtered_seg_text = ' '.join(filtered_seg_list)
 
         # 读取自定义形状图像
-        mask = np.array(Image.open('C:/Users/xyu003/PycharmProjects/python课设/logo.png'))
+        mask = np.array(Image.open('logo.png'))
 
         # 生成词云
         wordcloud = WordCloud(width=800, height=800, background_color='white', mask=mask,
@@ -90,7 +90,7 @@ elif page == '期末周那些事儿~':
         option = st.selectbox('_呈现方式_', ('选择一个你喜欢的呈现方式','柱状图','饼图'))
 
         # 处理情绪分析文本
-        ls = pd.read_csv('C:/Users/xyu003/PycharmProjects/python课设/情绪总分析.csv')
+        ls = pd.read_csv('情绪总分析.csv')
         ls = np.array(ls)  # 转换为 ndarray
         ls = ls.reshape(1, len(ls)).tolist()  # 转换成 List [[1, 2, 3]]
         ls = ls[0]  # 取第一个元素得到最终结果 [1, 2, 3]
@@ -154,7 +154,7 @@ elif page == '期末周那些事儿~':
                     ':blue[数值越高，情绪积极性越强，数值越低，情绪消极性越强]')
         option = st.selectbox('_呈现方式_', ('选择一个你喜欢的呈现方式','散点图', '柱状图', '饼图'))
 
-        file_path = 'C:/Users/xyu003/PycharmProjects/python课设/nlp情绪分析.txt'  # 文本文件的路径
+        file_path = 'nlp情绪分析.txt'  # 文本文件的路径
         data = []  # 存储读取到的数据
 
         with open(file_path, 'r') as file:
@@ -244,7 +244,7 @@ elif page == '期末周那些事儿~':
         option = st.selectbox('_呈现方式_', ('选择一个你喜欢的呈现方式','散点图', '柱状图', '饼图'))
 
         # 知网情感词典情感分析处理后的文本内容
-        file_path = 'C:/Users/xyu003/PycharmProjects/python课设/result_data2.txt'
+        file_path = 'result_data2.txt'
 
         # 提取数据
         emotion_scores = []  # 存储情感分值的列表
