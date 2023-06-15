@@ -77,7 +77,7 @@ def drawcloud(filepath):
     filtered_seg_text = ' '.join(filtered_seg_list)
 
     # 读取自定义形状图像
-    mask = np.array(Image.open('C:/Users/xyu003/PycharmProjects/python课设/logo.png'))
+    mask = np.array(Image.open('logo.png'))
 
     # 生成词云
     wordcloud = WordCloud(width=800, height=800, background_color='white', mask=mask,
@@ -95,19 +95,19 @@ def drawcloud(filepath):
 def sentiment_analysis(txt):
     # 生成stopword表，需要去除一些否定词和程度词汇
     stopwords = set()
-    fr = open('C:/Users/xyu003/PycharmProjects/python课设/停用词.txt', 'r', encoding='utf-8')
+    fr = open('停用词.txt', 'r', encoding='utf-8')
     for word in fr:
         stopwords.add(word.strip())  # Python strip() 方法用于移除字符串头尾指定的字符（默认为空格或换行符）或字符序列。
     # 读取否定词文件
-    not_word_file = open('C:/Users/xyu003/PycharmProjects/python课设/否定词.txt', 'r+', encoding='utf-8')
+    not_word_file = open('否定词.txt', 'r+', encoding='utf-8')
     not_word_list = not_word_file.readlines()
     not_word_list = [w.strip() for w in not_word_list]
     # 读取程度副词文件
-    degree_file = open('C:/Users/xyu003/PycharmProjects/python课设/程度副词.txt', 'r+', encoding='utf-8')
+    degree_file = open('程度副词.txt', 'r+', encoding='utf-8')
     degree_list = degree_file.readlines()
     degree_list = [item.split(',')[0] for item in degree_list]
     # 生成新的停用词表
-    with open('C:/Users/xyu003/PycharmProjects/python课设/stopwords.txt', 'w', encoding='utf-8') as f:
+    with open('stopwords.txt', 'w', encoding='utf-8') as f:
         for word in stopwords:
             if (word not in not_word_list) and (word not in degree_list):
                 f.write(word + '\n')
@@ -119,7 +119,7 @@ def sentiment_analysis(txt):
         for i in seg_list:
             seg_result.append(i)
         stopwords = set()
-        with open('C:/Users/xyu003/PycharmProjects/python课设/stopwords.txt', 'r', encoding='utf-8') as fr:
+        with open('stopwords.txt', 'r', encoding='utf-8') as fr:
             for i in fr:
                 stopwords.add(i.strip())
         return list(filter(lambda x: x not in stopwords, seg_result))
@@ -127,7 +127,7 @@ def sentiment_analysis(txt):
     # 找出文本中的情感词、否定词和程度副词
     def classify_words(word_list):
         # 读取情感词典文件
-        sen_file = open('C:/Users/xyu003/PycharmProjects/python课设/BosonNLP_sentiment_score.txt', 'r+',
+        sen_file = open('BosonNLP_sentiment_score.txt', 'r+',
                         encoding='utf-8')
         # 获取词典文件内容
         sen_list = sen_file.readlines()
@@ -139,10 +139,10 @@ def sentiment_analysis(txt):
                 sen_dict[i.split(' ')[0]] = i.split(' ')[1]
 
         # 读取否定词文件
-        not_word_file = open('C:/Users/xyu003/PycharmProjects/python课设/否定词.txt', 'r+', encoding='utf-8')
+        not_word_file = open('否定词.txt', 'r+', encoding='utf-8')
         not_word_list = not_word_file.readlines()
         # 读取程度副词文件
-        degree_file = open('C:/Users/xyu003/PycharmProjects/python课设/程度副词.txt', 'r+', encoding='utf-8')
+        degree_file = open('程度副词.txt', 'r+', encoding='utf-8')
         degree_list = degree_file.readlines()
         degree_dict = defaultdict()
         for i in degree_list:
@@ -253,7 +253,7 @@ if page == '产品研究中心【apple watch】':
     # 是否显示词云
     option0 = st.selectbox('_词云_', ('是否显示关于apple watch的词云', '是', '否'))
     if option0 == '是':
-        drawcloud('C:/Users/xyu003/PycharmProjects/python课设/apple watch.txt')
+        drawcloud('apple watch.txt')
 
     # 分析方式设置
     option = st.selectbox('_词典选择_',
@@ -267,7 +267,7 @@ if page == '产品研究中心【apple watch】':
         option = st.selectbox('_呈现方式_', ('选择一个你喜欢的呈现方式', '柱状图', '饼图'))
 
         # 数据清洗
-        ls = pd.read_csv('C:/Users/xyu003/PycharmProjects/python课设/apple情绪.csv')
+        ls = pd.read_csv('apple情绪.csv')
         ls = np.array(ls)  # 转换为 ndarray
         ls = ls.reshape(1, len(ls)).tolist()  # 转换成 List [[1, 2, 3]]
         ls = ls[0]  # 取第一个元素得到最终结果 [1, 2, 3]
@@ -293,7 +293,7 @@ if page == '产品研究中心【apple watch】':
                     ':blue[数值越高，情绪积极性越强，数值越低，情绪消极性越强]')
         option = st.selectbox('_呈现方式_', ('选择一个你喜欢的呈现方式', '散点图', '柱状图', '饼图'))
 
-        file_path = 'C:/Users/xyu003/PycharmProjects/python课设/apple nlp情绪分析.txt'  # 文本文件的路径
+        file_path = 'apple nlp情绪分析.txt'  # 文本文件的路径
         data = []  # 存储读取到的数据
 
         with open(file_path, 'r') as file:
@@ -349,7 +349,7 @@ if page == '产品研究中心【apple watch】':
         option = st.selectbox('_呈现方式_', ('选择一个你喜欢的呈现方式', '散点图', '柱状图', '饼图'))
 
         # 知网情感词典情感分析处理后的文本内容
-        file_path = 'C:/Users/xyu003/PycharmProjects/python课设/result_data3.txt'
+        file_path = 'result_data3.txt'
 
         # 提取数据
         emotion_scores = []  # 存储情感分值的列表
@@ -408,7 +408,7 @@ elif page == '民生热点市集【考试周】':
     # 是否显示词云
     option0 = st.selectbox('_词云_', ('是否显示关于考试周的词云', '是', '否'))
     if option0 == '是':
-        drawcloud('C:/Users/xyu003/PycharmProjects/python课设/weibowenben.txt')
+        drawcloud('weibowenben.txt')
 
     # 分析方式设置
     option = st.selectbox('_词典选择_',
@@ -422,7 +422,7 @@ elif page == '民生热点市集【考试周】':
         option = st.selectbox('_呈现方式_', ('选择一个你喜欢的呈现方式', '柱状图', '饼图'))
 
         # 数据清洗
-        ls = pd.read_csv('C:/Users/xyu003/PycharmProjects/python课设/情绪总分析.csv')
+        ls = pd.read_csv('情绪总分析.csv')
         ls = np.array(ls)  # 转换为 ndarray
         ls = ls.reshape(1, len(ls)).tolist()  # 转换成 List [[1, 2, 3]]
         ls = ls[0]  # 取第一个元素得到最终结果 [1, 2, 3]
@@ -448,7 +448,7 @@ elif page == '民生热点市集【考试周】':
                     ':blue[数值越高，情绪积极性越强，数值越低，情绪消极性越强]')
         option = st.selectbox('_呈现方式_', ('选择一个你喜欢的呈现方式', '散点图', '柱状图', '饼图'))
 
-        file_path = 'C:/Users/xyu003/PycharmProjects/python课设/nlp情绪分析.txt'  # 文本文件的路径
+        file_path = 'nlp情绪分析.txt'  # 文本文件的路径
         data = []  # 存储读取到的数据
 
         with open(file_path, 'r') as file:
@@ -504,7 +504,7 @@ elif page == '民生热点市集【考试周】':
         option = st.selectbox('_呈现方式_', ('选择一个你喜欢的呈现方式', '散点图', '柱状图', '饼图'))
 
         # 知网情感词典情感分析处理后的文本内容
-        file_path = 'C:/Users/xyu003/PycharmProjects/python课设/result_data2.txt'
+        file_path = 'result_data2.txt'
 
         # 提取数据
         emotion_scores = []  # 存储情感分值的列表
@@ -565,7 +565,7 @@ elif page == '时政话题速递【c919】':
     # 是否显示词云
     option0 = st.selectbox('_词云_', ('是否显示关于C919的词云', '是', '否'))
     if option0 == '是':
-        drawcloud('C:/Users/xyu003/PycharmProjects/python课设/c919.txt')
+        drawcloud('c919.txt')
 
     # 分析方式设置
     option = st.selectbox('_词典选择_',
@@ -579,7 +579,7 @@ elif page == '时政话题速递【c919】':
         option = st.selectbox('_呈现方式_', ('选择一个你喜欢的呈现方式', '柱状图', '饼图'))
 
         # 数据清洗
-        ls = pd.read_csv('C:/Users/xyu003/PycharmProjects/python课设/c919大连情绪.csv')
+        ls = pd.read_csv('c919大连情绪.csv')
         ls = np.array(ls)  # 转换为 ndarray
         ls = ls.reshape(1, len(ls)).tolist()  # 转换成 List [[1, 2, 3]]
         ls = ls[0]  # 取第一个元素得到最终结果 [1, 2, 3]
@@ -605,7 +605,7 @@ elif page == '时政话题速递【c919】':
                     ':blue[数值越高，情绪积极性越强，数值越低，情绪消极性越强]')
         option = st.selectbox('_呈现方式_', ('选择一个你喜欢的呈现方式', '散点图', '柱状图', '饼图'))
 
-        file_path = 'C:/Users/xyu003/PycharmProjects/python课设/c919 nlp情绪分析.txt'  # 文本文件的路径
+        file_path = 'c919 nlp情绪分析.txt'  # 文本文件的路径
         data = []  # 存储读取到的数据
 
         with open(file_path, 'r') as file:
@@ -661,7 +661,7 @@ elif page == '时政话题速递【c919】':
         option = st.selectbox('_呈现方式_', ('选择一个你喜欢的呈现方式', '散点图', '柱状图', '饼图'))
 
         # 知网情感词典情感分析处理后的文本内容
-        file_path = 'C:/Users/xyu003/PycharmProjects/python课设/result_data4.txt'
+        file_path = 'result_data4.txt'
 
         # 提取数据
         emotion_scores = []  # 存储情感分值的列表
