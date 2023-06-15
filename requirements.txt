@@ -8,3 +8,4 @@ scipy
 Pillow
 streamlit-echarts
 pyecharts
+collections
