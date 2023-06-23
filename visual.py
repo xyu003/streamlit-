@@ -230,7 +230,7 @@ if st.sidebar.button('首页'):
     # 在这里添加首页的内容
     st.title('欢迎来到我们的课设展示页面！')
     st.title('本次:blue[Python课设]主题：')
-    st.title('基于微博用户数据的关键词情感分析🌐')
+    st.title('基于Python的微博文本情绪分析与可视化🌐')
     # markdown
     st.markdown('课设构想：')
     st.markdown('随着计算机技术的不断进步，人们的生活方式逐渐发生改变，社交网络就是一个非常突出的例子。'
